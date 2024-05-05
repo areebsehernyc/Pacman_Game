@@ -184,7 +184,7 @@ int main() {
 
 
     Texture pacmanTexture;
-    if (!pacmanTexture.loadFromFile("F:/Pacman_Game/Pacman_Game/Pacman_Spritesheet.png")) {
+    if (!pacmanTexture.loadFromFile("C:/Users/Basit/source/repos/Pacman_Game/Pacman_Game/Pacman_Spritesheet.png")) {
         cerr << "Failed to load Pacman spritesheet!" << endl;
         return EXIT_FAILURE;
     }
@@ -199,7 +199,7 @@ int main() {
     Pacman pacman(pacmanTexture, pacmanStartPosition, 0.05f); // Animation speed as needed
 
     Texture coinTexture;
-    if (!coinTexture.loadFromFile("F:/Pacman_Game/Pacman_Game/Coin.png")) {
+    if (!coinTexture.loadFromFile("C:/Users/Basit/source/repos/Pacman_Game/Pacman_Game/Coin.png")) {
         cerr << "Failed to load coin texture!" << endl;
         return EXIT_FAILURE;
     }
@@ -239,7 +239,7 @@ int main() {
 
     // Load eat sound
     SoundBuffer eatBuffer;
-    if (!eatBuffer.loadFromFile("F:/Pacman_Game/Pacman_Game/eat.wav")) {
+    if (!eatBuffer.loadFromFile("C:/Users/Basit/source/repos/Pacman_Game/Pacman_Game/eat.wav")) {
         cerr << "Failed to load eat sound!" << endl;
         return EXIT_FAILURE;
     }

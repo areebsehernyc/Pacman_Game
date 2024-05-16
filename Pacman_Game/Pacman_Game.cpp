@@ -233,10 +233,16 @@ public:
     Ghost(const Texture& texture, const Vector2f& startPosition, const Vector2f& startDirection,
         float startSpeed, bool startsConfined = false) : startPosition(startPosition),
         direction(startDirection), speed(startSpeed), confined(startsConfined) {
+
+        int rectWidth = texture.getSize().x / 4;
+        int rectHeight = texture.getSize().y;
+        int shrinkFactor = 60; // Amount to reduce the dimensions by
+
         sprite.setTexture(texture);
         sprite.setPosition(startPosition);
-        sprite.setOrigin(texture.getSize().x / 4, texture.getSize().y / 2); // Origin set to half of ghost sprite
-        sprite.setTextureRect(IntRect(0, 0, texture.getSize().x / 4, texture.getSize().y));
+        sprite.setOrigin(rectWidth, rectHeight / 2); // Origin set to half of ghost sprite
+        sprite.setTextureRect(IntRect(0, 0, rectWidth - shrinkFactor, rectHeight - shrinkFactor));
+        //sprite.setTextureRect(IntRect(0, 0, texture.getSize().x / 4, texture.getSize().y));
     }
     void setChasing(bool isChasing) {
         chasing = isChasing;
@@ -569,7 +575,7 @@ int main() {
     vector<Ghost> ghosts{
         // Confined ghost starts within your inner square bounds
     Ghost(ghostTexture, confinedGhostStartPosition, {0, -1}, 80, true),
-    Ghost(ghostTexture, {100.0f, 100.0f}, {0, -1}, 80.0f, false),     // Chasing ghost
+    Ghost(ghostTexture, {100.0f, 100.0f}, {0, -1}, 60.0f, false),     // Chasing ghost
     Ghost(ghostTexture, {300.0f, 100.0f}, {0, -1}, 80.0f, false),     // Random moving ghost
     Ghost(ghostTexture, {400.0f, 100.0f}, {0, -1}, 80.0f, false),
     };
@@ -667,7 +673,8 @@ int main() {
                     lifeText.setString("Lives: " + to_string(lives));
                     if (lives <= 0)
                     {
-                        gameOver = true;
+                        cout << "Collide!";
+                        //gameOver = true;
                     }
                     // Reset Pacman and ghosts to the starting positions if necessary
                     break;
